@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Aufa Rafli Sofwan Pasya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #9d4edd; /* Ungu neon */
+            --secondary-color: #240046; /* Ungu tua */
+            --accent-color: #c77dff; /* Ungu terang */
+            --accent-orange: #ff9500; /* Oranye neon */
+            --light-color: #e0aaff;
+            --dark-color: #10002b; /* Hitam keunguan */
+            --text-color: #ffffff;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--dark-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Geometric Elements */
+        .geometric-shape {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        
+        .circle {
+            border-radius: 50%;
+            background: var(--primary-color);
+            filter: blur(2px);
+        }
+        
+        .triangle {
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        
+        .square {
+            background: var(--accent-color);
+            transform: rotate(45deg);
+        }
+        
+        .line {
+            background: var(--primary-color);
+            height: 2px;
+            transform-origin: left center;
+        }
+        
+        /* Orange accent elements */
+        .orange-accent {
+            background: var(--accent-orange);
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(16, 0, 43, 0.9);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--primary-color);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-orange);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(16, 0, 43, 0.7), rgba(16, 0, 43, 0.9)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(157, 78, 221, 0.7);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--light-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(199, 125, 255, 0.7);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: var(--dark-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-orange));
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-img {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .about-img img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-orange);
+            z-index: 1;
+            opacity: 0.7;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-item i {
+            color: var(--primary-color);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Interests Section */
+        .interests {
+            padding: 5rem 0;
+            background-color: rgba(36, 0, 70, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interests-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .interest-card {
+            background-color: rgba(157, 78, 221, 0.2);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 250px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interest-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent-orange);
+            transform: scaleY(0);
+            transition: transform 0.3s;
+        }
+        
+        .interest-card:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .interest-card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(157, 78, 221, 0.4);
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+        }
+        
+        .interest-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            transition: color 0.3s;
+        }
+        
+        .interest-card:hover i {
+            color: var(--accent-orange);
+        }
+        
+        .interest-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        /* Goals Section */
+        .goals {
+            padding: 5rem 0;
+            background-color: var(--dark-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .goals-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .goal-card {
+            background-color: rgba(36, 0, 70, 0.7);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .goal-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-orange);
+            clip-path: polygon(100% 0, 0 100%, 100% 100%);
+            opacity: 0.7;
+        }
+        
+        .goal-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+        }
+        
+        .goal-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: rgba(36, 0, 70, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(157, 78, 221, 0.2);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 50%;
+            margin: 0 1rem;
+            transition: all 0.3s;
+            font-size: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-orange);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s;
+            z-index: -1;
+        }
+        
+        .social-links a:hover::before {
+            transform: scale(1);
+        }
+        
+        .social-links a:hover {
+            color: var(--dark-color);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 149, 0, 0.7);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+            border-top: 1px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-orange);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Aufa Rafli</div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#interests">Minat</a></li>
+                <li><a href="#goals">Cita-cita</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Geometric Elements -->
+        <div class="geometric-shape circle" style="width: 200px; height: 200px; top: 10%; left: 5%;"></div>
+        <div class="geometric-shape circle" style="width: 150px; height: 150px; bottom: 15%; right: 10%; background: var(--accent-color);"></div>
+        <div class="geometric-shape square" style="width: 100px; height: 100px; top: 20%; right: 15%;"></div>
+        <div class="geometric-shape triangle" style="width: 0; height: 0; border-left: 75px solid transparent; border-right: 75px solid transparent; border-bottom: 130px solid var(--primary-color); bottom: 10%; left: 15%;"></div>
+        <div class="geometric-shape line" style="width: 300px; transform: rotate(45deg); top: 40%; left: 10%;"></div>
+        <!-- Orange accent elements -->
+        <div class="geometric-shape circle orange-accent" style="width: 80px; height: 80px; top: 30%; right: 25%; opacity: 0.15;"></div>
+        <div class="geometric-shape square orange-accent" style="width: 50px; height: 50px; bottom: 25%; left: 30%; opacity: 0.15;"></div>
+        
+        <div class="hero-content">
+            <h1>Aufa Rafli Sofwan Pasya</h1>
+            <p>Mahasiswa Ilmu Komputer IPB University</p>
+            <a href="#about" class="btn">Tentang Saya</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <!-- Geometric Elements -->
+        <div class="geometric-shape circle" style="width: 180px; height: 180px; top: 5%; right: 5%; background: var(--accent-color);"></div>
+        <div class="geometric-shape circle" style="width: 120px; height: 120px; bottom: 10%; left: 8%;"></div>
+        <div class="geometric-shape square" style="width: 80px; height: 80px; top: 30%; left: 5%; background: var(--accent-color);"></div>
+        <div class="geometric-shape triangle" style="width: 0; height: 0; border-left: 60px solid transparent; border-right: 60px solid transparent; border-bottom: 100px solid var(--primary-color); top: 20%; right: 10%;"></div>
+        <div class="geometric-shape line" style="width: 250px; transform: rotate(-30deg); bottom: 20%; right: 15%;"></div>
+        <!-- Orange accent elements -->
+        <div class="geometric-shape circle orange-accent" style="width: 70px; height: 70px; top: 40%; left: 15%; opacity: 0.15;"></div>
+        <div class="geometric-shape triangle orange-accent" style="width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 70px solid var(--accent-orange); bottom: 30%; right: 20%; opacity: 0.15;"></div>
+        
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Saya</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="PPAUFARAFLInew.jpg" alt="Profile Picture">
+                </div>
+                <div class="about-text">
+                    <h3>Hallo, Saya Aufa Rafli Sofwan Pasya</h3>
+                    <p>Saya adalah Aufa Rafli Sofwan Pasya, mahasiswa Ilmu Komputer IPB University yang memiliki ketertarikan besar pada dunia UI/UX Design, desain grafis, dan content creation. Dengan latar belakang minat di bidang kreatif dan teknologi, saya berusaha menggabungkan logika pemrograman dengan sentuhan estetika desain untuk menciptakan pengalaman digital yang lebih interaktif dan menyenangkan. Selain itu, saya juga gemar bermain game sebagai sarana hiburan sekaligus inspirasi dalam memahami pengalaman pengguna.</p>
+                    <p>Saya memiliki hobi bermain game dan senang mencoba hal-hal baru dalam dunia desain dan teknologi.</p>
+                    
+                    <div class="info">
+                        <div class="info-item">
+                            <i class="fas fa-user"></i>
+                            <span>Aufa Rafli Sofwan Pasya</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-id-card"></i>
+                            <span>M0403241133</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Ilmu Komputer</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-user-friends"></i>
+                            <span>Proxy: Abelian</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section id="interests" class="interests">
+        <!-- Geometric Elements -->
+        <div class="geometric-shape circle" style="width: 150px; height: 150px; top: 10%; left: 7%;"></div>
+        <div class="geometric-shape circle" style="width: 100px; height: 100px; bottom: 15%; right: 8%; background: var(--accent-color);"></div>
+        <div class="geometric-shape square" style="width: 70px; height: 70px; top: 25%; right: 12%;"></div>
+        <div class="geometric-shape triangle" style="width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 85px solid var(--primary-color); bottom: 20%; left: 12%;"></div>
+        <div class="geometric-shape line" style="width: 200px; transform: rotate(60deg); top: 40%; left: 15%;"></div>
+        <!-- Orange accent elements -->
+        <div class="geometric-shape circle orange-accent" style="width: 60px; height: 60px; top: 25%; right: 20%; opacity: 0.15;"></div>
+        <div class="geometric-shape line orange-accent" style="width: 150px; transform: rotate(-45deg); bottom: 25%; left: 20%; opacity: 0.15;"></div>
+        
+        <div class="container">
+            <div class="section-title">
+                <h2>Minat & Hobi</h2>
+            </div>
+            <div class="interests-content">
+                <div class="interest-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Main Game</h3>
+                    <p>Hobi saya bermain game untuk mengisi waktu luang dan sebagai sarana refreshing</p>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>UI/UX Design</h3>
+                    <p>Minat dalam mendesain antarmuka pengguna yang menarik dan pengalaman pengguna yang intuitif</p>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Desain Grafis</h3>
+                    <p>Menciptakan desain visual yang komunikatif dan estetis</p>
+                </div>
+                <div class="interest-card">
+                    <i class="fas fa-video"></i>
+                    <h3>Content Creation</h3>
+                    <p>Membuat konten kreatif untuk berbagai platform media</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section id="goals" class="goals">
+        <!-- Geometric Elements -->
+        <div class="geometric-shape circle" style="width: 160px; height: 160px; top: 8%; right: 6%; background: var(--accent-color);"></div>
+        <div class="geometric-shape circle" style="width: 110px; height: 110px; bottom: 12%; left: 10%;"></div>
+        <div class="geometric-shape square" style="width: 90px; height: 90px; top: 30%; left: 8%; background: var(--accent-color);"></div>
+        <div class="geometric-shape triangle" style="width: 0; height: 0; border-left: 65px solid transparent; border-right: 65px solid transparent; border-bottom: 110px solid var(--primary-color); top: 15%; left: 15%;"></div>
+        <div class="geometric-shape line" style="width: 280px; transform: rotate(-45deg); bottom: 25%; right: 10%;"></div>
+        <!-- Orange accent elements -->
+        <div class="geometric-shape circle orange-accent" style="width: 65px; height: 65px; top: 35%; right: 15%; opacity: 0.15;"></div>
+        <div class="geometric-shape square orange-accent" style="width: 45px; height: 45px; bottom: 20%; left: 25%; opacity: 0.15;"></div>
+        
+        <div class="container">
+            <div class="section-title">
+                <h2>Cita-cita & Motivasi</h2>
+            </div>
+            <div class="goals-content">
+                <div class="goal-card">
+                    <h3>Cita-cita</h3>
+                    <p>Menjadi seorang UI/UX Designer profesional yang dapat menciptakan pengalaman digital yang menyenangkan dan bermanfaat bagi banyak orang</p>
+                </div>
+                <div class="goal-card">
+                    <h3>Motivasi</h3>
+                    <p>Saya termotivasi untuk terus mengembangkan diri di bidang UI/UX Design dan desain grafis karena saya percaya bahwa desain bukan hanya soal tampilan, tetapi juga bagaimana memberikan pengalaman yang bermakna dan menyenangkan bagi pengguna. Dengan menggabungkan kreativitas dan keterampilan teknis, saya ingin menciptakan solusi digital yang bermanfaat serta mampu memberi dampak positif bagi banyak orang.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <!-- Geometric Elements -->
+        <div class="geometric-shape circle" style="width: 140px; height: 140px; top: 12%; left: 9%;"></div>
+        <div class="geometric-shape circle" style="width: 90px; height: 90px; bottom: 18%; right: 7%; background: var(--accent-color);"></div>
+        <div class="geometric-shape square" style="width: 75px; height: 75px; top: 35%; right: 14%;"></div>
+        <div class="geometric-shape triangle" style="width: 0; height: 0; border-left: 55px solid transparent; border-right: 55px solid transparent; border-bottom: 95px solid var(--primary-color); bottom: 15%; left: 18%;"></div>
+        <div class="geometric-shape line" style="width: 220px; transform: rotate(30deg); top: 45%; right: 12%;"></div>
+        <!-- Orange accent elements -->
+        <div class="geometric-shape circle orange-accent" style="width: 55px; height: 55px; top: 30%; left: 20%; opacity: 0.15;"></div>
+        <div class="geometric-shape triangle orange-accent" style="width: 0; height: 0; border-left: 35px solid transparent; border-right: 35px solid transparent; border-bottom: 60px solid var(--accent-orange); bottom: 25%; right: 25%; opacity: 0.15;"></div>
+        
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Saya</h2>
+            </div>
+            <div class="contact-content">
+                <p>Jika Anda ingin berkolaborasi atau sekedar mengobrol, jangan ragu untuk menghubungi saya melalui media sosial berikut:</p>
+                
+                <div class="social-links">
+                    <a href="https://www.instagram.com/aufaraflii/?hl=en" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/aufarafli" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/aufa-rafli-sofwan-pasya-672773323/" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Geometric Elements -->
+        <div class="geometric-shape circle" style="width: 130px; height: 130px; top: 10%; right: 8%; background: var(--accent-color);"></div>
+        <div class="geometric-shape circle" style="width: 80px; height: 80px; bottom: 20%; left: 12%;"></div>
+        <div class="geometric-shape square" style="width: 65px; height: 65px; top: 25%; left: 10%; background: var(--accent-color);"></div>
+        <div class="geometric-shape triangle" style="width: 0; height: 0; border-left: 45px solid transparent; border-right: 45px solid transparent; border-bottom: 80px solid var(--primary-color); bottom: 25%; right: 15%;"></div>
+        <div class="geometric-shape line" style="width: 180px; transform: rotate(-60deg); top: 40%; left: 15%;"></div>
+        <!-- Orange accent elements -->
+        <div class="geometric-shape circle orange-accent" style="width: 50px; height: 50px; top: 35%; right: 20%; opacity: 0.15;"></div>
+        <div class="geometric-shape line orange-accent" style="width: 120px; transform: rotate(45deg); bottom: 30%; left: 15%; opacity: 0.15;"></div>
+        
+        <div class="container">
+            <div class="footer-content">
+                <ul class="footer-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#interests">Minat</a></li>
+                    <li><a href="#goals">Cita-cita</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+                <div class="copyright">
+                    <p>&copy; 2025 Aufa Rafli Sofwan Pasya. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add active class to navigation links based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
